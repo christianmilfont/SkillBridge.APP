@@ -1,0 +1,18 @@
+{
+  "loginTitle": "Iniciar sesión",
+  "placeholderEmail": "Correo electrónico",
+  "placeholderName": "Nombre",
+  "placeholderAddress": "Dirección",
+  "placeholderPhone": "Teléfono",
+  "buttonLogin": "Entrar",
+  "errorFillAllFields": "Por favor, complete todos los campos.",
+  "errorInvalidLogin": "Credenciales inválidas o error de inicio de sesión. Inténtelo de nuevo.",
+  "themeLabel": "Tema {{theme}}",
+  "homeTitle": "Gestión de Motos",
+  "homeListMotos": "Lista de Motos",
+  "homeCheckMotos": "Verificar Motos",
+  "homeRegisterMoto": "Registrar Moto",
+  "homeHistory": "Historial",
+  "homePreferences": "Preferencias",
+  "logout": "Cerrar sesión"
+}
