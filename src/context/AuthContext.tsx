@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signIn = async (username: string, password: string) => {
-    const response = await api.post("/api/auth/login"), { username, password });
+    const response = await api.post("/api/auth/login", { username, password });
     const { token, user } = response.data;
 
     await SecureStore.setItemAsync("userToken", token);
