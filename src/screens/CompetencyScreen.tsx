@@ -1,7 +1,10 @@
+// src/screens/CompetencyScreen.tsx
+
 import React, { useState, useContext } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import AuthContext from "../context/AuthContext";
 import api from "../context/api";
+import { competencyStyles } from "../styles/competencyStyles"; // Importando os estilos
 
 export default function CompetencyScreen({ navigation, route }: any) {
   const { user } = useContext(AuthContext);
@@ -70,23 +73,23 @@ export default function CompetencyScreen({ navigation, route }: any) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Adicionar Competência</Text>
+    <View style={competencyStyles.container}>
+      <Text style={competencyStyles.title}>Adicionar Competência</Text>
 
       <TextInput
-        style={styles.input}
+        style={competencyStyles.input}
         placeholder="Nome da competência"
         value={newCompetency}
         onChangeText={setNewCompetency}
       />
       <TextInput
-        style={styles.input}
+        style={competencyStyles.input}
         placeholder="Descrição da competência"
         value={competencyDescription}
         onChangeText={setCompetencyDescription}
       />
       <TextInput
-        style={styles.input}
+        style={competencyStyles.input}
         placeholder="Nível (1 a 4)"
         keyboardType="numeric"
         value={competencyLevel}
@@ -94,17 +97,9 @@ export default function CompetencyScreen({ navigation, route }: any) {
         maxLength={1}
       />
 
-      <TouchableOpacity style={styles.button} onPress={createCompetency}>
-        <Text style={styles.buttonText}>Criar Competência</Text>
+      <TouchableOpacity style={competencyStyles.button} onPress={createCompetency}>
+        <Text style={competencyStyles.buttonText}>Criar Competência</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 26, fontWeight: "700", marginBottom: 12 },
-  input: { backgroundColor: "#F3F4F6", padding: 10, borderRadius: 8, marginTop: 6 },
-  button: { backgroundColor: "#0B81FF", padding: 12, borderRadius: 10, marginTop: 12 },
-  buttonText: { color: "#FFF", textAlign: "center", fontWeight: "700" },
-});

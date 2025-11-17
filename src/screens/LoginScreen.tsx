@@ -1,9 +1,7 @@
-// src/screens/LoginScreen.tsx
-
 import React, { useState, useContext } from 'react';
 import { View, TextInput, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
 import AuthContext from '../context/AuthContext';
-import { useTheme } from 'react-native-paper';
+import { useThemeContext } from '../context/ThemeContext'; // Usando seu próprio ThemeContext
 
 export default function LoginScreen({ navigation }: any) {
   const [username, setUsername] = useState('');
@@ -11,7 +9,7 @@ export default function LoginScreen({ navigation }: any) {
   const [loading, setLoading] = useState(false);
 
   const { signIn } = useContext(AuthContext);
-  const theme = useTheme();
+  const { isDarkTheme, toggleTheme } = useThemeContext(); // Acessando o contexto de tema
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -32,29 +30,29 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.title, { color: theme.colors.primary }]}>SkillBridge</Text>
+    <View style={[styles.container, { backgroundColor: isDarkTheme ? '#121212' : '#fff' }]}>
+      <Text style={[styles.title, { color: isDarkTheme ? '#fff' : '#222' }]}>SkillBridge</Text>
 
       <TextInput
-        style={[styles.input, { color: theme.colors.onSurface }]}
+        style={[styles.input, { color: isDarkTheme ? '#fff' : '#222', backgroundColor: isDarkTheme ? '#333' : '#f2f2f2' }]}
         placeholder="Usuário"
-        placeholderTextColor="#aaa"
+        placeholderTextColor={isDarkTheme ? '#aaa' : '#666'}
         autoCapitalize="none"
         value={username}
         onChangeText={setUsername}
       />
 
       <TextInput
-        style={[styles.input, { color: theme.colors.onSurface }]}
+        style={[styles.input, { color: isDarkTheme ? '#fff' : '#222', backgroundColor: isDarkTheme ? '#333' : '#f2f2f2' }]}
         placeholder="Senha"
-        placeholderTextColor="#aaa"
+        placeholderTextColor={isDarkTheme ? '#aaa' : '#666'}
         secureTextEntry
         value={password}
         onChangeText={setPassword}
       />
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: theme.colors.primary }]}
+        style={[styles.button, { backgroundColor: isDarkTheme ? '#007bff' : '#034b61' }]}
         onPress={handleLogin}
         disabled={loading}
       >
@@ -63,6 +61,12 @@ export default function LoginScreen({ navigation }: any) {
         ) : (
           <Text style={styles.buttonText}>Entrar</Text>
         )}
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={toggleTheme} style={styles.themeButton}>
+        <Text style={{ color: isDarkTheme ? '#fff' : '#222' }}>
+          {isDarkTheme ? "🌙 tema claro" : "☀️ tema escuro"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -86,7 +90,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 12,
-    backgroundColor: '#fff',
   },
   button: {
     paddingVertical: 14,
@@ -98,5 +101,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     fontSize: 16,
+  },
+  themeButton: {
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#ccc',
   },
 });

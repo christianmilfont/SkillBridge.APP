@@ -1,7 +1,10 @@
+// src/screens/CoursesScreen.tsx
+
 import React, { useEffect, useState, useContext } from "react";
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
 import AuthContext from "../context/AuthContext";
 import api from "../context/api";
+import { courseStyles } from "../styles/courseStyles"; // Importando os estilos
 
 type Course = {
   id: string;
@@ -42,15 +45,15 @@ export default function CoursesScreen({ navigation }: any) {
     fetchRecommendedCourses();
   }, [user]);
 
-  if (loading) return <ActivityIndicator size="large" style={styles.center} />;
+  if (loading) return <ActivityIndicator size="large" style={courseStyles.center} />;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Cursos recomendados</Text>
+    <View style={courseStyles.container}>
+      <Text style={courseStyles.title}>Cursos recomendados</Text>
 
       {courses.length === 0 ? (
-        <View style={styles.emptyBox}>
-          <Text style={styles.emptyText}>Nenhum curso recomendado por enquanto.</Text>
+        <View style={courseStyles.emptyBox}>
+          <Text style={courseStyles.emptyText}>Nenhum curso recomendado por enquanto.</Text>
         </View>
       ) : (
         <FlatList
@@ -58,11 +61,11 @@ export default function CoursesScreen({ navigation }: any) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.card}
+              style={courseStyles.card}
               onPress={() => navigation.navigate("CourseDetails", { course: item })}
             >
-              <Text style={styles.courseTitle}>{item.title}</Text>
-              <Text numberOfLines={3} style={styles.desc}>
+              <Text style={courseStyles.courseTitle}>{item.title}</Text>
+              <Text numberOfLines={3} style={courseStyles.desc}>
                 {item.description}
               </Text>
             </TouchableOpacity>
@@ -72,14 +75,3 @@ export default function CoursesScreen({ navigation }: any) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  center: { flex: 1, justifyContent: "center", alignItems: "center" },
-  container: { flex: 1, padding: 18 },
-  title: { fontSize: 22, fontWeight: "700", marginBottom: 12 },
-  card: { padding: 14, backgroundColor: "#F8FAFC", borderRadius: 10, marginBottom: 10 },
-  courseTitle: { fontSize: 16, fontWeight: "700" },
-  desc: { marginTop: 8, color: "#374151" },
-  emptyBox: { marginTop: 40, alignItems: "center" },
-  emptyText: { color: "#6B7280", fontSize: 16 },
-});

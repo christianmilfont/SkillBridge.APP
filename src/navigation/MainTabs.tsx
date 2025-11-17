@@ -1,4 +1,3 @@
-// src/navigation/MainTabs.tsx
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -53,8 +52,7 @@ export default function MainTabs() {
       <Tab.Screen name="Courses" component={CoursesScreen} />
       <Tab.Screen name="Jobs" component={JobsScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      {/* Aqui é onde incluímos a navegação de detalhes (não como Tab) */}
-      <Tab.Screen name="CompetencyScreen" component={CompetencyScreen}/>
+      <Tab.Screen name="CompetencyScreen" component={CompetencyScreen} />
     </Tab.Navigator>
   );
 }

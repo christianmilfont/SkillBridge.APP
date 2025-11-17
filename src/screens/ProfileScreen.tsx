@@ -1,15 +1,10 @@
+// src/screens/ProfileScreen.tsx
+
 import React, { useEffect, useState, useContext } from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, Text, ActivityIndicator, ScrollView, TouchableOpacity, Alert } from "react-native";
 import AuthContext from "../context/AuthContext";
 import api from "../context/api";
+import { profileStyles } from "../styles/profileStyles"; // Importando os estilos
 
 export default function ProfileScreen({ navigation }: any) {
   const { user } = useContext(AuthContext);
@@ -36,78 +31,59 @@ export default function ProfileScreen({ navigation }: any) {
     loadProfile();
   }, [user]);
 
-  if (loading) return <ActivityIndicator size="large" style={styles.center} />;
+  if (loading) return <ActivityIndicator size="large" style={profileStyles.center} />;
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Meu Perfil</Text>
+    <ScrollView style={profileStyles.container}>
+      <Text style={profileStyles.title}>Meu Perfil</Text>
 
       {!profile ? (
         <>
-          <Text style={styles.emptyText}>Você ainda não possui um perfil.</Text>
+          <Text style={profileStyles.emptyText}>Você ainda não possui um perfil.</Text>
           <TouchableOpacity
-            style={styles.button}
+            style={profileStyles.button}
             onPress={() => navigation.navigate("CompetencyQuestionsScreen")}
           >
-            <Text style={styles.buttonText}>Criar Perfil e Competências</Text>
+            <Text style={profileStyles.buttonText}>Criar Perfil e Competências</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
-          <Text style={styles.label}>Nome</Text>
-          <Text style={styles.value}>{profile.fullName}</Text>
+          <Text style={profileStyles.label}>Nome</Text>
+          <Text style={profileStyles.value}>{profile.fullName}</Text>
 
-          <Text style={styles.label}>Bio</Text>
-          <Text style={styles.value}>{profile.bio}</Text>
+          <Text style={profileStyles.label}>Bio</Text>
+          <Text style={profileStyles.value}>{profile.bio}</Text>
 
-          <Text style={styles.label}>Localização</Text>
-          <Text style={styles.value}>{profile.location}</Text>
+          <Text style={profileStyles.label}>Localização</Text>
+          <Text style={profileStyles.value}>{profile.location}</Text>
 
-          <Text style={styles.label}>Competências</Text>
+          <Text style={profileStyles.label}>Competências</Text>
 
-         {profile.profileCompetencies?.length === 0 ? (
-  <Text style={styles.emptyText}>Nenhuma competência cadastrada</Text>
-) : (
-  profile.profileCompetencies.map((pc: any, index: number) => (
-    <View key={pc.id || index} style={styles.skillBox}>
-      {/* Assegure-se de que todos os textos estejam dentro de um componente <Text> */}
-      <Text style={styles.skillName}>
-        {pc.competency?.name ?? "—"}
-      </Text>
-      <Text style={styles.skillLevel}>
-        Nível: {pc.selfAssessedLevel}/5
-      </Text>
-    </View>
-  ))
-)}
-
-
-
-
+          {profile.profileCompetencies?.length === 0 ? (
+            <Text style={profileStyles.emptyText}>Nenhuma competência cadastrada</Text>
+          ) : (
+            profile.profileCompetencies.map((pc: any, index: number) => (
+              <View key={pc.id || index} style={profileStyles.skillBox}>
+                <Text style={profileStyles.skillName}>
+                  {pc.competency?.name ?? "—"}
+                </Text>
+                <Text style={profileStyles.skillLevel}>
+                  Nível: {pc.selfAssessedLevel}/5
+                </Text>
+              </View>
+            ))
+          )}
 
           {/* Botão para ir à tela de Competências */}
           <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("CompetencyScreen", { profileId: profile.id })}  // Passando o profileId
+            style={profileStyles.button}
+            onPress={() => navigation.navigate("CompetencyScreen", { profileId: profile.id })}
           >
-            <Text style={styles.buttonText}>Gerenciar Competências</Text>
+            <Text style={profileStyles.buttonText}>Gerenciar Competências</Text>
           </TouchableOpacity>
         </>
       )}
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  center: { flex: 1, justifyContent: "center", alignItems: "center" },
-  container: { flex: 1, padding: 18 },
-  title: { fontSize: 26, fontWeight: "700", marginBottom: 12 },
-  label: { marginTop: 12, fontWeight: "700" },
-  value: { marginTop: 4, fontSize: 16 },
-  skillBox: { padding: 12, backgroundColor: "#F3F4F6", borderRadius: 10, marginTop: 8 },
-  skillName: { fontWeight: "700" },
-  skillLevel: { marginTop: 4 },
-  emptyText: { color: "#6B7280", marginTop: 12 },
-  button: { backgroundColor: "#0B81FF", padding: 12, borderRadius: 10, marginTop: 12 },
-  buttonText: { color: "#FFF", textAlign: "center", fontWeight: "700" },
-});
