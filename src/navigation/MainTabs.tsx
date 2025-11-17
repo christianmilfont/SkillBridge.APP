@@ -41,8 +41,8 @@ export default function MainTabs() {
       <Tab.Screen name="Courses" component={CoursesScreen} />
       <Tab.Screen name="Jobs" component={JobsScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="VacancyDetails" component={VacancyDetails} />
-      <Stack.Screen name="CourseDetails" component={CourseDetails} />
+      <Tab.Screen name="VacancyDetails" component={VacancyDetails} />
+      <Tab.Screen name="CourseDetails" component={CourseDetails} />
     </Tab.Navigator>
   );
 }
