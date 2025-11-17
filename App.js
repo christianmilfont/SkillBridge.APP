@@ -9,7 +9,6 @@ import { ThemeProvider } from "./src/context/ThemeContext";
 // Screens
 import LoginScreen from "./src/screens/LoginScreen";
 import MainTabs from "./src/navigation/MainTabs";
-import CompetencyQuestionsScreen from "./src/screens/CompetencyQuestionsScreen";
 import CourseDetails from "./src/screens/CourseDetails";      // opcional, se você quiser detalhes
 import VacancyDetails from "./src/screens/VacancyDetails";  // opcional idem
 
@@ -30,11 +29,7 @@ export default function App() {
             {/* TABS PRINCIPAIS */}
             <Stack.Screen name="Main" component={MainTabs} />
 
-            {/* TELAS (FORA DAS TABS) */}
-            <Stack.Screen
-              name="CompetencyQuestions"
-              component={CompetencyQuestionsScreen}
-            />
+            
 
             {/* ROTAS OPCIONAIS DE DETALHE (se quiser usar depois) */}
             <Stack.Screen

@@ -10,6 +10,8 @@ export interface User {
   username: string;
   email: string;
   role: string;
+  profileId?: string;  // Adicionando o profileId como opcional
+
 }
 
 interface AuthContextType {

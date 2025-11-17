@@ -27,7 +27,7 @@ export default function CoursesScreen({ navigation }: any) {
       }
 
       const profileId = myProfile.id;
-      const res = await api.get(`/api/recommendation/courses/${profileId}`);
+      const res = await api.get(`/api/Recommendation/courses/${profileId}`);
       setCourses(res.data || []);
     } catch (err) {
       console.log("Erro ao carregar cursos recomendados", err);

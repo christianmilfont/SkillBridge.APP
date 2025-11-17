@@ -91,7 +91,10 @@ export default function HomeScreen({ navigation }: any) {
         />
       )}
 
-      <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={signOut}>
+     <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={async () => {
+        await signOut();  // Realiza o logout
+        navigation.navigate('Auth');  // Redireciona para a tela de Login
+      }}>
         <Text style={styles.buttonText}>Sair</Text>
       </TouchableOpacity>
     </View>

@@ -1,5 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
-import { View, Text, ActivityIndicator, ScrollView, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
 import AuthContext from "../context/AuthContext";
 import api from "../context/api";
 
@@ -39,7 +47,7 @@ export default function ProfileScreen({ navigation }: any) {
           <Text style={styles.emptyText}>Você ainda não possui um perfil.</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("CompetencyQuestions")}
+            onPress={() => navigation.navigate("CompetencyQuestionsScreen")}
           >
             <Text style={styles.buttonText}>Criar Perfil e Competências</Text>
           </TouchableOpacity>
@@ -56,22 +64,33 @@ export default function ProfileScreen({ navigation }: any) {
           <Text style={styles.value}>{profile.location}</Text>
 
           <Text style={styles.label}>Competências</Text>
-          {profile.profileCompetencies?.length === 0 ? (
-            <Text style={styles.emptyText}>Nenhuma competência cadastrada</Text>
-          ) : (
-            profile.profileCompetencies.map((pc: any) => (
-              <View key={pc.id} style={styles.skillBox}>
-                <Text style={styles.skillName}>{pc.competency?.name ?? "—"}</Text>
-                <Text style={styles.skillLevel}>Nível: {pc.selfAssessedLevel}/5</Text>
-              </View>
-            ))
-          )}
 
+         {profile.profileCompetencies?.length === 0 ? (
+  <Text style={styles.emptyText}>Nenhuma competência cadastrada</Text>
+) : (
+  profile.profileCompetencies.map((pc: any, index: number) => (
+    <View key={pc.id || index} style={styles.skillBox}>
+      {/* Assegure-se de que todos os textos estejam dentro de um componente <Text> */}
+      <Text style={styles.skillName}>
+        {pc.competency?.name ?? "—"}
+      </Text>
+      <Text style={styles.skillLevel}>
+        Nível: {pc.selfAssessedLevel}/5
+      </Text>
+    </View>
+  ))
+)}
+
+
+
+
+
+          {/* Botão para ir à tela de Competências */}
           <TouchableOpacity
-            style={[styles.button, { marginTop: 18 }]}
-            onPress={() => navigation.navigate("CompetencyQuestions")}
+            style={styles.button}
+            onPress={() => navigation.navigate("CompetencyScreen", { profileId: profile.id })}  // Passando o profileId
           >
-            <Text style={styles.buttonText}>Editar Competências</Text>
+            <Text style={styles.buttonText}>Gerenciar Competências</Text>
           </TouchableOpacity>
         </>
       )}
