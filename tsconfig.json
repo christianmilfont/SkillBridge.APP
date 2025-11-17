@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx", 
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES6",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "target": "esnext",
+    "customConditions": ["react-native"],
+    "module": "Node16",
+    "moduleResolution": "node16",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
