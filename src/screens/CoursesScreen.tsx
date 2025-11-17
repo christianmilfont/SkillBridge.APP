@@ -61,14 +61,18 @@ export default function CoursesScreen({ navigation }: any) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={courseStyles.card}
-              onPress={() => navigation.navigate("CourseDetails", { course: item })}
-            >
-              <Text style={courseStyles.courseTitle}>{item.title}</Text>
-              <Text numberOfLines={3} style={courseStyles.desc}>
-                {item.description}
-              </Text>
-            </TouchableOpacity>
+  style={courseStyles.card}
+  onPress={() => {
+    console.log("Item selecionado:", item); // Verifique se o curso contém o id
+    navigation.navigate("CourseDetails", { course: item });
+  }}
+>
+  <Text style={courseStyles.courseTitle}>{item.title}</Text>
+  <Text numberOfLines={3} style={courseStyles.desc}>
+    {item.description}
+  </Text>
+</TouchableOpacity>
+
           )}
         />
       )}
