@@ -12,8 +12,8 @@ import CoursesScreen from '../screens/CoursesScreen';
 import JobsScreen from '../screens/JobsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import VacancyDetails from '../screens/VacancyDetails';
-import CourseDetails from '../screens/CourseDetails';
 import CompetencyScreen from '../screens/CompetencyScreen';
+import CourseDetailsScreen from '../screens/CourseDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,7 +22,7 @@ function DetailsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="VacancyDetails" component={VacancyDetails} />
-      <Stack.Screen name="CourseDetails" component={CourseDetails} />
+      <Stack.Screen name="CourseDetails" component={CourseDetailsScreen} />
     </Stack.Navigator>
   );
 }
