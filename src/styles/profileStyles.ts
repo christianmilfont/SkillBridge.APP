@@ -15,7 +15,7 @@ export const profileStyles = StyleSheet.create({
     marginBottom: 20,
     letterSpacing: 1.5,
     textTransform: "uppercase", // Maiúsculas para um estilo moderno
-  },
+  }, input:{},
   label: {
     marginTop: 16,
     fontWeight: "700",

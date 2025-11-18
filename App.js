@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { AuthProvider } from "./src/context/AuthContext";
 import { ThemeProvider } from "./src/context/ThemeContext";
-
+import { ProfileProvider } from "./src/context/ProfileContext";
 // Screens
 import LoginScreen from "./src/screens/LoginScreen";
 import MainTabs from "./src/navigation/MainTabs";
@@ -20,6 +20,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
+         <ProfileProvider>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
 
@@ -43,6 +44,7 @@ export default function App() {
 
           </Stack.Navigator>
         </NavigationContainer>
+        </ProfileProvider>
       </AuthProvider>
     </ThemeProvider>
   );

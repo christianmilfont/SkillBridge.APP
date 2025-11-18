@@ -14,6 +14,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import VacancyDetails from '../screens/VacancyDetails';
 import CompetencyScreen from '../screens/CompetencyScreen';
 import CourseDetailsScreen from '../screens/CourseDetails';
+import CreateProfileScreen from '../screens/CreateProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -53,6 +54,8 @@ export default function MainTabs() {
       <Tab.Screen name="Jobs" component={JobsScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="CompetencyScreen" component={CompetencyScreen} />
+      <Tab.Screen name="CreateProfileScreen" component={CreateProfileScreen} />
+
     </Tab.Navigator>
   );
 }

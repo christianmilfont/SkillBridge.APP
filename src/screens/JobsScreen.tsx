@@ -32,7 +32,7 @@ export default function JobsScreen({ navigation }: any) {
       }
 
       const profileId = myProfile.id;
-      const res = await api.get(`/api/recommendation/vacancies/${profileId}`);
+      const res = await api.get(`/api/Recommendation/vacancies/${profileId}`);
       setVacancies(res.data || []);
     } catch (err: any) {
       console.log("Erro ao carregar vagas recomendadas:", err);

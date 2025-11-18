@@ -1,10 +1,9 @@
 // src/screens/HomeScreen.tsx
-
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from "react-native";
 import AuthContext from "../context/AuthContext";
 import api from "../context/api";
-import { homeStyles } from "../styles/homeStyles"; // Importando os estilos
+import { homeStyles } from "../styles/homeStyles";
 
 export default function HomeScreen({ navigation }: any) {
   const { user, loading: authLoading, signOut } = useContext(AuthContext);
@@ -23,8 +22,10 @@ export default function HomeScreen({ navigation }: any) {
 
       // Carregar cursos recomendados
       if (myProfile) {
-        const resCourses = await api.get(`/api/recommendation/courses/${myProfile.id}`);
+        const resCourses = await api.get(`/api/Recommendation/courses/${myProfile.id}`);
         setCourses(resCourses.data || []);
+      } else {
+        setCourses([]);
       }
     } catch (err) {
       console.log("Erro ao carregar dados do HomeScreen:", err);
@@ -63,7 +64,12 @@ export default function HomeScreen({ navigation }: any) {
 
           <TouchableOpacity
             style={homeStyles.button}
-            onPress={() => navigation.navigate("Profile")}
+            onPress={() =>
+              navigation.navigate("Profile", {
+                newProfile: profile,
+                onProfileCreated: loadData,
+              })
+            }
           >
             <Text style={homeStyles.buttonText}>Ver Perfil</Text>
           </TouchableOpacity>
@@ -71,9 +77,13 @@ export default function HomeScreen({ navigation }: any) {
       ) : (
         <TouchableOpacity
           style={[homeStyles.button, { marginBottom: 20 }]}
-          onPress={() => navigation.navigate("CompetencyQuestions")}
+          onPress={() =>
+            navigation.navigate("Profile", {
+              onProfileCreated: loadData,
+            })
+          }
         >
-          <Text style={homeStyles.buttonText}>Criar Perfil</Text>
+          <Text style={homeStyles.buttonText}>Ver Perfil</Text>
         </TouchableOpacity>
       )}
 
@@ -100,8 +110,7 @@ export default function HomeScreen({ navigation }: any) {
         style={[homeStyles.button, { marginTop: 20 }]}
         onPress={async () => {
           await signOut();
-          // Realiza o logout
-          navigation.navigate('Auth'); // Redireciona para a tela de Login
+          navigation.navigate('Auth');
         }}
       >
         <Text style={homeStyles.buttonText}>Sair</Text>

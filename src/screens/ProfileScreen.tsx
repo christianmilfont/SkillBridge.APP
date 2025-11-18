@@ -1,34 +1,18 @@
-// src/screens/ProfileScreen.tsx
-
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { View, Text, ActivityIndicator, ScrollView, TouchableOpacity, Alert } from "react-native";
-import AuthContext from "../context/AuthContext";
-import api from "../context/api";
-import { profileStyles } from "../styles/profileStyles"; // Importando os estilos
+import ProfileContext from "../context/ProfileContext";  // Importando o contexto de perfil
+import AuthContext from "../context/AuthContext";  // Importando o contexto de autenticação
+import { profileStyles } from "../styles/profileStyles";
 
 export default function ProfileScreen({ navigation }: any) {
-  const { user } = useContext(AuthContext);
-  const [profile, setProfile] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);  // Acessando o usuário logado
+  const { profile, loading, loadProfile } = useContext(ProfileContext);  // Acessando o perfil e funções
 
-  const loadProfile = async () => {
-    setLoading(true);
-    try {
-      const res = await api.get("/api/v1/profiles");
-      const list = res.data as any[];
-      const my = list.find((p) => p.userId === user?.id);
-      setProfile(my || null);
-    } catch (err) {
-      console.log("Erro ao carregar profile:", err);
-      Alert.alert("Erro", "Não foi possível carregar seu perfil.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Carregar o perfil sempre que o usuário for atualizado
   useEffect(() => {
-    if (!user) return;
-    loadProfile();
+    if (user) {
+      loadProfile(); // Carregar o perfil do usuário
+    }
   }, [user]);
 
   if (loading) return <ActivityIndicator size="large" style={profileStyles.center} />;
@@ -42,7 +26,7 @@ export default function ProfileScreen({ navigation }: any) {
           <Text style={profileStyles.emptyText}>Você ainda não possui um perfil.</Text>
           <TouchableOpacity
             style={profileStyles.button}
-            onPress={() => navigation.navigate("CompetencyQuestionsScreen")}
+            onPress={() => navigation.navigate("CreateProfileScreen")}
           >
             <Text style={profileStyles.buttonText}>Criar Perfil e Competências</Text>
           </TouchableOpacity>
@@ -59,10 +43,9 @@ export default function ProfileScreen({ navigation }: any) {
           <Text style={profileStyles.value}>{profile.location}</Text>
 
           <Text style={profileStyles.label}>Competências</Text>
-
-          {profile.profileCompetencies?.length === 0 ? (
-            <Text style={profileStyles.emptyText}>Nenhuma competência cadastrada</Text>
-          ) : (
+          
+          {/* Garantir que profileCompetencies seja um array */}
+           {profile.profileCompetencies && profile.profileCompetencies.length > 0 ? (
             profile.profileCompetencies.map((pc: any, index: number) => (
               <View key={pc.id || index} style={profileStyles.skillBox}>
                 <Text style={profileStyles.skillName}>
@@ -73,7 +56,10 @@ export default function ProfileScreen({ navigation }: any) {
                 </Text>
               </View>
             ))
+          ) : (
+            <Text style={profileStyles.emptyText}>Nenhuma competência cadastrada</Text>
           )}
+
 
           {/* Botão para ir à tela de Competências */}
           <TouchableOpacity

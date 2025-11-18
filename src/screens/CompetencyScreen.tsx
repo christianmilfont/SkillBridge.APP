@@ -1,18 +1,18 @@
-// src/screens/CompetencyScreen.tsx
-
 import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext"; // Importa o contexto
 import api from "../context/api";
-import { competencyStyles } from "../styles/competencyStyles"; // Importando os estilos
+import { competencyStyles } from "../styles/competencyStyles";
 
 export default function CompetencyScreen({ navigation, route }: any) {
   const { user } = useContext(AuthContext);
-  const [newCompetency, setNewCompetency] = useState(""); // Competência a ser criada
-  const [competencyLevel, setCompetencyLevel] = useState(""); // Nível de competência (1 a 4)
-  const [competencyDescription, setCompetencyDescription] = useState(""); // Descrição da competência
+  const { loadProfile } = useContext(ProfileContext); // Pega loadProfile
+  const [newCompetency, setNewCompetency] = useState("");
+  const [competencyLevel, setCompetencyLevel] = useState("");
+  const [competencyDescription, setCompetencyDescription] = useState("");
 
-  const profileId = route.params?.profileId; // Pegando o profileId da navegação
+  const profileId = route.params?.profileId;
 
   const createCompetency = async () => {
     if (!newCompetency || !competencyDescription || !competencyLevel) {
@@ -36,20 +36,24 @@ export default function CompetencyScreen({ navigation, route }: any) {
 
       const competencyId = res.data.id;
 
-      // Associar a competência ao perfil
       if (profileId) {
         await addCompetencyToProfile(profileId, competencyId, level);
       } else {
         Alert.alert("Erro", "Perfil não encontrado.");
+        return;
       }
 
       setNewCompetency("");
       setCompetencyLevel("");
       setCompetencyDescription("");
       Alert.alert("Sucesso", "Competência criada e associada com sucesso!");
-      navigation.goBack(); // Volta para a tela de perfil
+
+      // Atualiza o perfil
+      await loadProfile(); // Aqui atualizamos o ProfileScreen automaticamente
+
+      navigation.goBack();
     } catch (err) {
-      console.log("Erro ao criar competência:",  err);
+      console.log("Erro ao criar competência:", err);
       Alert.alert("Erro", "Não foi possível criar a competência.");
     }
   };
@@ -62,12 +66,12 @@ export default function CompetencyScreen({ navigation, route }: any) {
       });
 
       if (response.status === 200) {
-        Alert.alert("Sucesso", "Competência associada ao seu perfil com sucesso!");
+        console.log("Competência associada com sucesso!");
       } else {
         Alert.alert("Erro", "Não foi possível associar a competência ao perfil.");
       }
     } catch (err) {
-      console.log("Erro ao associar competência ao perfil:", err);
+      console.log("Erro ao associar competência:", err);
       Alert.alert("Erro", "Não foi possível associar a competência.");
     }
   };
