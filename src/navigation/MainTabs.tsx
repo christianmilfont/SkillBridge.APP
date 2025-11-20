@@ -11,10 +11,10 @@ import HomeScreen from '../screens/HomeScreen';
 import CoursesScreen from '../screens/CoursesScreen';
 import JobsScreen from '../screens/JobsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import VacancyDetails from '../screens/VacancyDetails';
 import CompetencyScreen from '../screens/CompetencyScreen';
 import CourseDetailsScreen from '../screens/CourseDetails';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
+import VacancyDetailsScreen from '../screens/VacancyDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator();
 function DetailsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="VacancyDetails" component={VacancyDetails} />
+      <Stack.Screen name="VacancyDetails" component={VacancyDetailsScreen} />
       <Stack.Screen name="CourseDetails" component={CourseDetailsScreen} />
     </Stack.Navigator>
   );

@@ -97,7 +97,7 @@ export default function HomeScreen({ navigation }: any) {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={homeStyles.card}
-              onPress={() => navigation.navigate("CourseDetails", { course: item })}
+              onPress={() => navigation.navigate("Courses", { course: item })}
             >
               <Text style={homeStyles.courseTitle}>{item.title}</Text>
               <Text numberOfLines={2} style={homeStyles.desc}>{item.description}</Text>

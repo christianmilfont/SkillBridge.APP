@@ -33,7 +33,20 @@ export default function JobsScreen({ navigation }: any) {
 
       const profileId = myProfile.id;
       const res = await api.get(`/api/Recommendation/vacancies/${profileId}`);
-      setVacancies(res.data || []);
+
+      console.log("Vagas recebidas da API:", res.data);
+
+      // Garantir que cada item tenha o campo "id"
+      const mappedVacancies = (res.data || []).map((v: any) => ({
+        id: v.vacancyId, // vem do seu endpoint
+        title: v.title,
+        description: v.description,
+        company: v.company,
+        location: v.location,
+      }));
+
+      setVacancies(mappedVacancies);
+
     } catch (err: any) {
       console.log("Erro ao carregar vagas recomendadas:", err);
       Alert.alert("Erro", "Não foi possível carregar vagas recomendadas.");
