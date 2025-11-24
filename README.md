@@ -54,13 +54,16 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
   │  ├─ /contexts
   │  │   └─ AuthContext.tsx       // Auth + token handling
   │  ├─ /screens
-  │  │   ├─ LoginScreen.tsx
-  │  │   ├─ HomeScreen.tsx
+  │  │   ├─ AboutScreen.tsx
+  │  │   ├─ CompetencyScreen.tsx
+  │  │   ├─ CourseDetails.tsx
   │  │   ├─ CoursesScreen.tsx
-  │  │   ├─ CourseDetailScreen.tsx
+  │  │   ├─ CreateProfileScreen.tsx
+  │  │   ├─ HomeScreen.tsx
   │  │   ├─ JobsScreen.tsx
+  │  │   ├─ LoginScreen.tsx
   │  │   ├─ ProfileScreen.tsx
-  │  │   └─ AboutScreen.tsx
+  │  │   ├─ VacancyDetails.tsx
   │  ├─ /components
   │  │   ├─ CourseCard.tsx
   │  │   └─ Button.tsx
