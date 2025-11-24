@@ -44,6 +44,9 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
 5. `npx expo start`
 
 ## Publicação
+link do app publicado:
+https://console.firebase.google.com/u/0/project/skillbridge-app-19682/appdistribution/app/android:com.chrischris021.skillbridgeapp/releases?hl=pt-br
+<img width="1420" height="606" alt="image" src="https://github.com/user-attachments/assets/94d79f63-8abd-497e-8cba-893af70f6a28" />
 
 
 ### Estrutura sugerida do projeto
