@@ -11,9 +11,6 @@ export default function AboutScreen() {
       <Text style={styles.title}>Sobre o App</Text>
 
       <View style={styles.card}>
-        <Text style={styles.label}>Versão do App:</Text>
-        <Text style={styles.value}>{Constants.expoConfig.version}</Text>
-
         <Text style={styles.label}>Último Commit:</Text>
         <Text style={styles.value}>{commitHash}</Text>
       </View>
