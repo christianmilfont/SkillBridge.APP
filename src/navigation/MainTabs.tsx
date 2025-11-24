@@ -55,7 +55,7 @@ export default function MainTabs() {
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="CompetencyScreen" component={CompetencyScreen} />
       <Tab.Screen name="CreateProfileScreen" component={CreateProfileScreen} />
-
+      
     </Tab.Navigator>
   );
 }

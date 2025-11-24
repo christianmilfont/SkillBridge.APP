@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SkillBridgeApp",
-    "slug": "SkillBridgeApp",
+    "slug": "skillbridge-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.chrischris021.skillbridgeapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,7 +31,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "skillbridge-app-19682"
+        "projectId": "472bf26d-bb18-4d76-828f-596943c26c9d"
       }
     }
   }
