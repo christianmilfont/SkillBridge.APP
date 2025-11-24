@@ -1,8 +1,8 @@
 # SkillBridge - Mobile App (React Native / Expo)
 
+![Imagem do WhatsApp de 2025-11-23 à(s) 17 49 10_69b3d90d](https://github.com/user-attachments/assets/f2fbd6a0-869c-4f8b-8dd2-efa55b2a8326)
+
 **Integrantes:** Christian Milfont - RM555345 / Iago Victor - RM558450
-**Link do vídeo (YouTube):** 
-**Commit hash demonstrado no app:** `COMMIT_HASH_AQUI`
 
 ## Descrição da solução (Global Solution)
 SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cursos, micro-tarefas, vagas e mentorias, gerando learning paths personalizados por IA. A aplicação mobile consome a API principal (.NET) que expõe endpoints para usuários, cursos, vagas, matrículas e feedbacks. O app permite autenticação com JWT, CRUD de matrículas/feedbacks e navegação entre telas.
