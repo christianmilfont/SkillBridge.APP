@@ -52,7 +52,10 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
   │  ├─ /api
   │  │   └─ api.ts                // Axios + interceptors
   │  ├─ /contexts
-  │  │   └─ AuthContext.tsx       // Auth + token handling
+  │  │   └─ AuthContext.tsx   // Auth + token handling
+  │  │   └─ ProfileContext.tsx
+  │  │   └─ ThemeContext.tsx
+  │  │   └─ api.ts       
   │  ├─ /screens
   │  │   ├─ AboutScreen.tsx
   │  │   ├─ CompetencyScreen.tsx
@@ -74,3 +77,7 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
   ├─ package.json
   └─ README.md
 ```
+  │  │   └─ AuthContext.tsx
+  │  │   └─ ProfileContext.tsx
+  │  │   └─ ThemeContext.tsx
+  │  │   └─ api.ts
