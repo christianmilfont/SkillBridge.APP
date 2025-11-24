@@ -9,11 +9,11 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
 
 ## Telas implementadas
 1. Login (autenticação JWT)  
-2. Home / Dashboard (resumo do usuário)  
-3. Catálogo de Cursos (listar)  
-4. Detalhe do Curso (ver + inscrever / cancelar inscrição)  
-5. Vagas (listar)  
-6. Perfil (editar dados do usuário)  
+2. Home / Dashboard (resumo do usuário, com cursos recomendados)  
+3. Catálogo de Cursos (listar cursos recomendados, baseadas nas suas competências)  
+4. Detalhe do Curso (ver detalhes dos cursos)  
+5. Vagas (listar vagas recomendadas, baseadas nas suas competências)  
+6. Perfil (dados do usuário com suas competências)  
 7. Sobre o App (hash do commit) — extra para requisitos
 
 ## Tecnologias
@@ -77,7 +77,4 @@ SkillBridge é uma plataforma de requalificação que conecta pessoas a micro-cu
   ├─ package.json
   └─ README.md
 ```
-  │  │   └─ AuthContext.tsx
-  │  │   └─ ProfileContext.tsx
-  │  │   └─ ThemeContext.tsx
-  │  │   └─ api.ts
+
